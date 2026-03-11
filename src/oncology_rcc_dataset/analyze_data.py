@@ -114,6 +114,9 @@ def analyze(data_folder: Path, output_csv: Path) -> None:
     print(f"Found {len(scans)} scan files.")
     print(f"Found {len(labels)} label files.")
 
+    metadata_csv_path = data_folder / "TCGA_Kidney_filtered_metadata.csv"
+    metadata_df = pd.read_csv(metadata_csv_path)
+
     dataset_mapping = {
         "KIRC": "Clear Cell RCC",
         "KIRP": "Papillary RCC",
@@ -125,6 +128,7 @@ def analyze(data_folder: Path, output_csv: Path) -> None:
         if str(label_path) not in labels:
             raise FileNotFoundError(f"Label file not found for scan: {scan_path}")
 
+        ct = sitk.ReadImage(scan_path)
         seg = sitk.ReadImage(label_path)
 
         dataset = scan_name.split("_")[0]
@@ -133,9 +137,19 @@ def analyze(data_folder: Path, output_csv: Path) -> None:
         tumor_size_ml, tumor_count, tumor_diameter_mm = analyze_tumors(seg)
         cyst_size_ml, cyst_count, cyst_diameter_mm = analyze_cysts(seg)
 
+        slice_thickness_mm = ct.GetSpacing()[2]
+        num_slices = ct.GetSize()[2]
+
+        series_uid = scan_name.removeprefix(dataset + "_").replace("_", ".")
+
+        match = metadata_df.loc[metadata_df["SeriesInstanceUID"] == series_uid]
+        patient_sex = match["PatientSex"].iloc[0] if not match.empty else None
+        patient_age = match["PatientAge"].iloc[0] if not match.empty else None
+
         scan_data = {
-            "scan_path": scan_path,
-            "label_path": label_path,
+            "series_uid": series_uid,
+            "patient_sex": patient_sex,
+            "patient_age": patient_age,
             "accumulated_tumor_size_ml": tumor_size_ml,
             "tumor_count": tumor_count,
             "accumulated_tumor_diameter_mm": tumor_diameter_mm,
@@ -143,6 +157,8 @@ def analyze(data_folder: Path, output_csv: Path) -> None:
             "accumulated_cyst_size_ml": cyst_size_ml,
             "cyst_count": cyst_count,
             "accumulated_cyst_diameter_mm": cyst_diameter_mm,
+            "slice_thickness_mm": slice_thickness_mm,
+            "num_slices": num_slices,
         }
 
         write_header = i == 0

@@ -27,6 +27,31 @@ Chromophobe RCC | TCGA-KICH | 18
 | Macro avg size (ml/lesion) | 168.34 | 17.38 |
 | Macro avg diameter (mm/lesion) | 55.51 | 21.00 |
 
+#### Patient demographics
+
+| Metric | Value |
+|---|---|
+| Male | 115 |
+| Female | 27 |
+| Age mean (years) | 54 |
+| Age min (years) | 26 |
+| Age max (years) | 82 |
+
+#### Scan geometry
+
+| Metric | Avg | Min | Max |
+|---|---|---|---|
+| Slice thickness (mm) | 3.9 | 0.6 | 10.0 |
+| Number of slices | 126 | 31 | 820 |
+
+#### Per subtype
+
+| Subtype | Tumors | Avg tumor size (ml) | Avg tumor diameter (mm) | Cysts | Avg cyst size (ml) | Avg cyst diameter (mm) |
+|---|---|---|---|---|---|---|
+| Clear Cell RCC | 18 | 272.25 | 70.96 | 18 | 0.55 | 9.68 |
+| Papillary RCC | 95 | 141.44 | 53.80 | 89 | 16.38 | 22.33 |
+| Chromophobe RCC | 29 | 191.95 | 51.52 | 16 | 41.89 | 26.31 |
+
 ## Installation
 
 Requires Python ≥ 3.10.
