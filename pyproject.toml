@@ -1,0 +1,43 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "oncology-rcc-dataset"
+version = "0.1.0"
+description = "Oncology Renal Cell Carcinoma (RCC) dataset tools"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [
+    {name = "Sarah De Boer, Hartmut Häntze"},
+]
+dependencies = [
+    "huggingface_hub>=0.20",
+    "pandas>=2.0",
+    "SimpleITK>=2.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "ruff>=0.4",
+]
+
+[project.scripts]
+download-rcc-data = "oncology_rcc_dataset.download_data:main"
+analyze-rcc-data = "oncology_rcc_dataset.analyze_data:main"
+summarize-rcc-data = "oncology_rcc_dataset.summary_analysis:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
