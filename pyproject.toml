@@ -13,7 +13,6 @@ authors = [
     {name = "Sarah De Boer, Hartmut Häntze"},
 ]
 dependencies = [
-    "huggingface_hub>=0.20",
     "pandas>=2.0",
     "SimpleITK>=2.0",
 ]
@@ -25,7 +24,6 @@ dev = [
 ]
 
 [project.scripts]
-download-rcc-data = "oncology_rcc_dataset.download_data:main"
 analyze-rcc-data = "oncology_rcc_dataset.analyze_data:main"
 summarize-rcc-data = "oncology_rcc_dataset.summary_analysis:main"
 
