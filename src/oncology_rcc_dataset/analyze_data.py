@@ -1,6 +1,8 @@
 """CLI to analyze the RCC dataset.
 
-This script processes the CT scans and segmentation labels to extract relevant features such as tumor size, count, and diameter, as well as cyst characteristics. The results are saved in a CSV file for further analysis.
+This script processes the CT scans and segmentation labels to extract relevant features
+such as tumor size, count, and diameter, as well as cyst characteristics. The results
+are saved in a CSV file for further analysis.
 
 The labels in the segmentation masks are expected to be encoded as follows:
 - 0: Background
@@ -47,9 +49,7 @@ def diameter_lesion(seg_single_lesion: sitk.Image) -> float:
 
     max_d = 0.0
     for z in range(z0, z1):
-        slice_lab = sitk.Extract(
-            seg_single_lesion, size=[size[0], size[1], 0], index=[0, 0, z]
-        )
+        slice_lab = sitk.Extract(seg_single_lesion, size=[size[0], size[1], 0], index=[0, 0, z])
         slice_bin = sitk.Cast(slice_lab == label, sitk.sitkUInt8)
 
         # If label exists on this slice, it will be the only foreground (value 1)
