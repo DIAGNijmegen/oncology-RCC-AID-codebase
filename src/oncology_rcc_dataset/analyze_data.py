@@ -114,7 +114,7 @@ def analyze(data_folder: Path, output_csv: Path) -> None:
     print(f"Found {len(scans)} scan files.")
     print(f"Found {len(labels)} label files.")
 
-    metadata_csv_path = data_folder / "TCGA_Kidney_filtered_metadata.csv"
+    metadata_csv_path = data_folder / "metadata.csv"
     metadata_df = pd.read_csv(metadata_csv_path)
 
     dataset_mapping = {
@@ -140,7 +140,7 @@ def analyze(data_folder: Path, output_csv: Path) -> None:
         slice_thickness_mm = ct.GetSpacing()[2]
         num_slices = ct.GetSize()[2]
 
-        series_uid = scan_name.removeprefix(dataset + "_").replace("_", ".")
+        series_uid = scan_name.split("_acq")[0].removeprefix(dataset + "_").replace("_", ".")
 
         match = metadata_df.loc[metadata_df["SeriesInstanceUID"] == series_uid]
         patient_sex = match["PatientSex"].iloc[0] if not match.empty else None
@@ -176,7 +176,7 @@ def main() -> None:
     parser.add_argument(
         "data_folder",
         type=Path,
-        help="Directory containing the downloaded dataset files.",
+        help="Directory containing the downloaded dataset files. Should contain 'images/', 'labels/', and 'metadata.csv'.",
     )
     parser.add_argument(
         "output_csv",
