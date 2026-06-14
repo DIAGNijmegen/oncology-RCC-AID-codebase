@@ -28,6 +28,8 @@ dev = [
 [project.scripts]
 rcc-aid-analyze = "oncology_rcc_aid_codebase.analyze_data:main"
 rcc-aid-summarize = "oncology_rcc_aid_codebase.summary_analysis:main"
+rcc-aid-analyze-figure = "oncology_rcc_aid_codebase.data_analysis_figures:main"
+rcc-aid-example-cases-figure = "oncology_rcc_aid_codebase.example_cases_figure:main"
 
 
 [tool.setuptools.packages.find]
