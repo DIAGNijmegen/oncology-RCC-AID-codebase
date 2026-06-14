@@ -71,7 +71,7 @@ Donwload the dataset from Zenodo: [https://zenodo.org/records/19630298](https://
 Processes all CT scans and segmentation masks, and saves results to a CSV file. Results are written incrementally after each scan:
 
 ```bash
-analyze-rcc-data /path/to/data_folder /path/to/results.csv
+rcc-aid-analyze /path/to/data_folder /path/to/results.csv
 ```
 
 ### 3. Print a summary
@@ -79,18 +79,18 @@ analyze-rcc-data /path/to/data_folder /path/to/results.csv
 Prints dataset statistics to the command line, including subtype distribution and macro average lesion size and diameter:
 
 ```bash
-summarize-rcc-data /path/to/results.csv
+rcc-aid-summarize /path/to/results.csv
 ```
 
 If the CSV does not exist yet, pass `--data-folder` to run the analysis first automatically:
 
 ```bash
-summarize-rcc-data /path/to/results.csv --data-folder /path/to/data_folder
+rcc-aid-summarize /path/to/results.csv --data-folder /path/to/data_folder
 ```
 
 ## Citation
 
-If you use this dataset, please cite our paper:
+If you use this dataset, please cite our paper and dataset:
 
 ```bibtex
 @article{deBoer2026Accessible,
@@ -100,6 +100,16 @@ If you use this dataset, please cite our paper:
   year    = {2026},
   doi     = {10.64898/2026.04.22.26351451},
   note    = {medRxiv preprint}
+}
+
+@dataset{deBoer2026KidneySegmentation,
+  author    = {de Boer, Sarah and H{\"a}ntze, Hartmut and Russo, Tomasso and Ziegelmayer, Sebastian and van Ginneken, Bram and Prokop, Mathias and Bressem, Keno and Hering, Alessa},
+  title     = {Kidney Segmentation Dataset: Voxel-level Annotations for Renal Cell Carcinoma CT Imaging},
+  year      = {2026},
+  version    = {1.0.0},
+  publisher = {Zenodo},
+  doi       = {10.5281/zenodo.19630298},
+  url       = {https://doi.org/10.5281/zenodo.19630298}
 }
 ```
 
