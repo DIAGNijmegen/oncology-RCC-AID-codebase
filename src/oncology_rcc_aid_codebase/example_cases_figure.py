@@ -15,7 +15,6 @@ COLUMNS = ["Smallest volume", "Largest volume"]
 
 
 def select_representatives(group) -> list:
-    """Return [min, max] rows by accumulated_tumor_diameter_mm."""
     group = group.sort_values("accumulated_tumor_size_ml").reset_index(drop=True)
     return [group.iloc[0], group.iloc[-1]]
 
@@ -80,7 +79,11 @@ def make_example_cases_figure(
 
             series_uid = scan_row["series_uid"].replace(".", "_")
             ct_path = Path(scan_dir).glob(f"{prefix}_{series_uid}_acq_*.nii.gz")
+            if len(list(ct_path)) > 1:
+                raise ValueError(f"More than one file match for {series_uid}")
             seg_path = Path(label_dir).glob(f"{prefix}_{series_uid}_acq_*_seg.nii.gz")
+            if len(list(seg_path)) > 1:
+                raise ValueError(f"More than one segmentation match for {series_uid}")
             ct_slice, seg_slice = load_slice(
                 str(list(ct_path)[0]),
                 str(list(seg_path)[0]),
@@ -90,9 +93,6 @@ def make_example_cases_figure(
             ax.contour(
                 seg_slice == 2, levels=[0.5], colors="red", linewidths=1
             )  # tumor
-            ax.contour(
-                seg_slice == 3, levels=[0.5], colors="blue", linewidths=1
-            )  # cyst
 
             diam = scan_row["accumulated_tumor_diameter_mm"]
             ax.set_title(f"{diam:.0f} mm", fontsize=9)
@@ -129,19 +129,16 @@ def main() -> None:
     argparser.add_argument(
         "csv_path",
         type=str,
-        default="data_analysis.csv",
         help="Path to the CSV file containing the analyzed RCC dataset.",
     )
     argparser.add_argument(
         "output_filename",
         type=str,
-        default="example_cases_figure.pdf",
         help="Output filename to save the generated figure.",
     )
     argparser.add_argument(
         "data_folder",
         type=str,
-        default="TCGA_Annotations",
         help="Path to the folder containing the CT scans and segmentation labels.",
     )
 

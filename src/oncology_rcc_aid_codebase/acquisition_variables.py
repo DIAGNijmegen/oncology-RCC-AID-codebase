@@ -119,7 +119,11 @@ def extract(csv_path: Path, dicom_root: Path, output_csv: Path) -> None:
         subtype = row["TumorSubtype"]
         dataset_prefix = SUBTYPE_TO_DATASET.get(subtype)
 
-        base = {"series_uid": series_uid, "patient_id": patient_id, "tumor_histological_subtype": subtype}
+        base = {
+            "series_uid": series_uid,
+            "patient_id": patient_id,
+            "tumor_histological_subtype": subtype,
+        }
 
         if dataset_prefix is None:
             print(f"  [WARN] Unknown subtype '{subtype}' for {patient_id}")

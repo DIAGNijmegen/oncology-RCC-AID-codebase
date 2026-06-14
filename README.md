@@ -4,11 +4,11 @@ A curated dataset of CT scans and segmentation masks for Renal Cell Carcinoma (R
 
 ## Dataset Summary
 
-| Subtype | Source | Number of cases | Number of patients
-|---|---|---|
-Clear Cell RCC | TCGA-KIRC | 85 | 65
-Papillary RCC | TCGA-KIRP | 26 | 16
-Chromophobe RCC | TCGA-KICH | 18 | 10
+| Subtype | Source | Number of cases | Number of patients |
+|---|---|---|---|
+Clear Cell RCC | TCGA-KIRC | 85 | 65 |
+Papillary RCC | TCGA-KIRP | 26 | 16 |
+Chromophobe RCC | TCGA-KICH | 18 | 10 |
 
 ### Segmentation label encoding
 
@@ -47,7 +47,7 @@ Chromophobe RCC | TCGA-KICH | 18 | 10
 #### Per subtype
 
 | Subtype | Tumors | Avg tumor size (ml) | Avg tumor diameter (mm) |
-|---|---|---|---|---|---|---|
+|---|---|---|---|
 | Clear Cell RCC | 85 | 131 | 51 | 
 | Papillary RCC | 26 | 208 | 51 | 
 | Chromophobe RCC | 18 | 272 | 71 | 
