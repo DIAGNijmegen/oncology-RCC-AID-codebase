@@ -176,7 +176,8 @@ def main() -> None:
     parser.add_argument(
         "data_folder",
         type=Path,
-        help="Directory containing the downloaded dataset files. Should contain 'images/', 'labels/', and 'metadata.csv'.",
+        help="""Directory containing the downloaded dataset files.
+        Should contain 'images/', 'labels/', and 'metadata.csv'.""",
     )
     parser.add_argument(
         "output_csv",
