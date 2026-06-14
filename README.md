@@ -1,14 +1,14 @@
-# Oncology RCC Dataset
+# RCC-AID Dataset
 
 A curated dataset of CT scans and segmentation masks for Renal Cell Carcinoma (RCC), combining cases from the TCGA-KIRC, TCGA-KIRP, and TCGA-KICH collections. This repository provides tooling to download the dataset and extract tumor and cyst features for analysis.
 
 ## Dataset Summary
 
-| Subtype | Source | Number of cases 
+| Subtype | Source | Number of cases | Number of patients
 |---|---|---|
-Clear Cell RCC | TCGA-KIRC | 95
-Papillary RCC | TCGA-KIRP | 29
-Chromophobe RCC | TCGA-KICH | 18
+Clear Cell RCC | TCGA-KIRC | 85 | 65
+Papillary RCC | TCGA-KIRP | 26 | 16
+Chromophobe RCC | TCGA-KICH | 18 | 10
 
 ### Segmentation label encoding
 
@@ -23,16 +23,16 @@ Chromophobe RCC | TCGA-KICH | 18
 
 | Metric | Tumor | Cyst |
 |---|---|---|
-| Total count | 142 | 123 |
-| Macro avg size (ml/lesion) | 168.34 | 17.38 |
-| Macro avg diameter (mm/lesion) | 55.51 | 21.00 |
+| Total count | 129 | 118 |
+| Macro avg size (ml/lesion) | 166 | 17 |
+| Macro avg diameter (mm/lesion) | 54 | 21 |
 
 #### Patient demographics
 
 | Metric | Value |
 |---|---|
-| Male | 115 |
-| Female | 27 |
+| Male | 104 |
+| Female | 25 |
 | Age mean (years) | 54 |
 | Age min (years) | 26 |
 | Age max (years) | 82 |
@@ -41,16 +41,18 @@ Chromophobe RCC | TCGA-KICH | 18
 
 | Metric | Avg | Min | Max |
 |---|---|---|---|
-| Slice thickness (mm) | 3.9 | 0.6 | 10.0 |
-| Number of slices | 126 | 31 | 820 |
+| Slice thickness (mm) | 3.8 | 0.6 | 5.0 |
+| Number of slices | 112 | 31 | 820 |
 
 #### Per subtype
 
-| Subtype | Tumors | Avg tumor size (ml) | Avg tumor diameter (mm) | Cysts | Avg cyst size (ml) | Avg cyst diameter (mm) |
+| Subtype | Tumors | Avg tumor size (ml) | Avg tumor diameter (mm) |
 |---|---|---|---|---|---|---|
-| Clear Cell RCC | 18 | 272.25 | 70.96 | 18 | 0.55 | 9.68 |
-| Papillary RCC | 95 | 141.44 | 53.80 | 89 | 16.38 | 22.33 |
-| Chromophobe RCC | 29 | 191.95 | 51.52 | 16 | 41.89 | 26.31 |
+| Clear Cell RCC | 85 | 131 | 51 | 
+| Papillary RCC | 26 | 208 | 51 | 
+| Chromophobe RCC | 18 | 272 | 71 | 
+|---|---|---|---|---|---|---|
+| Cyst | 118 | 17 | 21 |
 
 ## Installation
 
@@ -71,7 +73,7 @@ Donwload the dataset from Zenodo: [https://zenodo.org/records/19630298](https://
 Processes all CT scans and segmentation masks, and saves results to a CSV file. Results are written incrementally after each scan:
 
 ```bash
-analyze-rcc-data /path/to/data_folder /path/to/results.csv
+rcc-aid-analyze /path/to/data_folder /path/to/results.csv
 ```
 
 ### 3. Print a summary
@@ -79,18 +81,18 @@ analyze-rcc-data /path/to/data_folder /path/to/results.csv
 Prints dataset statistics to the command line, including subtype distribution and macro average lesion size and diameter:
 
 ```bash
-summarize-rcc-data /path/to/results.csv
+rcc-aid-summarize /path/to/results.csv
 ```
 
 If the CSV does not exist yet, pass `--data-folder` to run the analysis first automatically:
 
 ```bash
-summarize-rcc-data /path/to/results.csv --data-folder /path/to/data_folder
+rcc-aid-summarize /path/to/results.csv --data-folder /path/to/data_folder
 ```
 
 ## Citation
 
-If you use this dataset, please cite our paper:
+If you use this dataset, please cite our paper and the zenodo page:
 
 ```bibtex
 @article{deBoer2026Accessible,
@@ -100,6 +102,14 @@ If you use this dataset, please cite our paper:
   year    = {2026},
   doi     = {10.64898/2026.04.22.26351451},
   note    = {medRxiv preprint}
+}
+
+@misc{deBoer2026RCCAID,
+  author  = {de Boer, Sarah and H{\"a}ntze, Hartmut and Ziegelmayer, Sebastian and van Ginneken, Bram and Prokop, Mathias and Bressem, Keno and Hering, Alessa},
+  title   = {Kidney Segmentation Dataset: Voxel-level Annotations for Renal Cell Carcinoma CT Imaging (1.0.0) [Data set]},
+  journal = {Zenodo},
+  year    = {2026},
+  doi     = {https://doi.org/10.5281/zenodo.19630298}
 }
 ```
 

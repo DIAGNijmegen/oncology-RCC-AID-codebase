@@ -5,7 +5,7 @@ from pathlib import Path
 
 import pandas as pd
 
-from oncology_rcc_dataset.analyze_data import analyze
+from oncology_rcc_aid_codebase.analyze_data import analyze
 
 NUMERIC_COLUMNS = [
     "accumulated_tumor_size_ml",

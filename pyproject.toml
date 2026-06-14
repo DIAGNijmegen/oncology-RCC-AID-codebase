@@ -26,8 +26,9 @@ dev = [
 ]
 
 [project.scripts]
-analyze-rcc-data = "oncology_rcc_dataset.analyze_data:main"
-summarize-rcc-data = "oncology_rcc_dataset.summary_analysis:main"
+rcc-aid-analyze = "oncology_rcc_aid_codebase.analyze_data:main"
+rcc-aid-summarize = "oncology_rcc_aid_codebase.summary_analysis:main"
+
 
 [tool.setuptools.packages.find]
 where = ["src"]
