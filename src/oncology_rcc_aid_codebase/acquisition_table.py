@@ -103,13 +103,6 @@ def main() -> None:
         type=Path,
         help="Output CSV from extract-acquisition-variables.",
     )
-    parser.add_argument(
-        "--latex",
-        type=Path,
-        default=None,
-        metavar="OUTPUT_TEX",
-        help="If given, also write a LaTeX table to this file.",
-    )
     args = parser.parse_args()
 
     df = pd.read_csv(args.acquisition_csv)

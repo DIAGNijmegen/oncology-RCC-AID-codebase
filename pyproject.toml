@@ -32,6 +32,8 @@ rcc-aid-dcm2nii = "oncology_rcc_aid_codebase.dcm2nii:main"
 rcc-aid-presample = "oncology_rcc_aid_codebase.presample_data:main"
 rcc-aid-analyze-figure = "oncology_rcc_aid_codebase.data_analysis_figures:main"
 rcc-aid-example-cases-figure = "oncology_rcc_aid_codebase.example_cases_figure:main"
+rcc-aid-extract-acquisition = "oncology_rcc_aid_codebase.acquisition_variables:main"
+rcc-aid-print-acquisition = "oncology_rcc_aid_codebase.acquisition_table:main"
 
 
 [tool.setuptools.packages.find]

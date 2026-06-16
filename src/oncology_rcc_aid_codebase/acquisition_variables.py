@@ -7,9 +7,9 @@ import pandas as pd
 import pydicom
 
 SUBTYPE_TO_DATASET = {
-    "Clear cell": "TCGA-KIRC/manifest-xxn3N2Qq630907925598003437/TCGA-KIRC",
-    "Papillary": "TCGA-KIRP/manifest-2oAypiYl1025908774074683865/TCGA-KIRP",
-    "Chromophobe": "TCGA-KICH/manifest-gPS8A5x81592964856394188085/TCGA-KICH",
+    "Clear Cell RCC": "TCGA-KIRC/.../TCGA-KIRC",
+    "Papillary RCC": "TCGA-KIRP/.../TCGA-KIRP",
+    "Chromophobe RCC": "TCGA-KICH/.../TCGA-KICH",
 }
 
 
@@ -114,9 +114,9 @@ def extract(csv_path: Path, dicom_root: Path, output_csv: Path) -> None:
     rows = []
 
     for i, (_, row) in enumerate(df.iterrows(), 1):
-        patient_id = row["PatientID"]
-        series_uid = row["SeriesInstanceUID"]
-        subtype = row["TumorSubtype"]
+        patient_id = row["patient_id"]
+        series_uid = row["series_uid"]
+        subtype = row["tumor_histological_subtype"]
         dataset_prefix = SUBTYPE_TO_DATASET.get(subtype)
 
         base = {
@@ -161,8 +161,14 @@ def main() -> None:
         type=Path,
         help="Root folder containing TCGA-KIRC/KIRP/KICH subfolders.",
     )
+    parser.add_argument("manifest_file_kirc", type=str, help="Filename of the manifest file for KIRC dataset.")
+    parser.add_argument("manifest_file_kirp", type=str, help="Filename of the manifest file for KIRP dataset.")
+    parser.add_argument("manifest_file_kich", type=str, help="Filename of the manifest file for KICH dataset.")
     parser.add_argument("output_csv", type=Path, help="Path to write the output CSV.")
     args = parser.parse_args()
+    SUBTYPE_TO_DATASET["Clear Cell RCC"] = SUBTYPE_TO_DATASET["Clear Cell RCC"].replace('...', args.manifest_file_kirc)
+    SUBTYPE_TO_DATASET["Papillary RCC"] = SUBTYPE_TO_DATASET["Papillary RCC"].replace('...', args.manifest_file_kirp)
+    SUBTYPE_TO_DATASET["Chromophobe RCC"] = SUBTYPE_TO_DATASET["Chromophobe RCC"].replace('...', args.manifest_file_kich)
     extract(args.csv_path, args.dicom_root, args.output_csv)
 
 
