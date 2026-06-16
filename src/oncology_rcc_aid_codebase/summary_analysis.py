@@ -49,11 +49,11 @@ def summarize(csv_path: Path) -> None:
     patients = df.drop_duplicates(subset="patient_id")
 
     print("\nPatient demographics:")
-    sex_counts = df["patient_sex"].value_counts(dropna=False)
+    sex_counts = patients["patient_sex"].value_counts(dropna=False)
     for sex, count in sex_counts.items():
         label = str(sex) if pd.notna(sex) else "Unknown"
         print(f"  {label}: {count}")
-    age = df["patient_age"].apply(
+    age = patients["patient_age"].apply(
         lambda x: (
             pd.to_numeric(str(x).rstrip("Y"), errors="coerce")
             if pd.notna(x)
@@ -74,18 +74,6 @@ def summarize(csv_path: Path) -> None:
     total_cyst_count = df["cyst_count"].sum()
     total_tumor_diameter = df["accumulated_tumor_diameter_mm"].sum()
     total_cyst_diameter = df["accumulated_cyst_diameter_mm"].sum()
-
-    print("\nMacro average lesion size (total accumulated size / total count):")
-    print(
-        f"  Tumor: {total_tumor_size:.2f} ml total"
-        f" / {int(total_tumor_count)} tumors"
-        f" = {_macro_avg(total_tumor_size, total_tumor_count):.2f} ml/tumor"
-    )
-    print(
-        f"  Cyst:  {total_cyst_size:.2f} ml total"
-        f" / {int(total_cyst_count)} cysts"
-        f" = {_macro_avg(total_cyst_size, total_cyst_count):.2f} ml/cyst"
-    )
 
     print("\nMacro average lesion size (total accumulated size / total count):")
     print(
