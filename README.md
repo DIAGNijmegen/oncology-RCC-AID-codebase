@@ -1,14 +1,14 @@
-# Oncology RCC Dataset
+# RCC-AID Dataset
 
 A curated dataset of CT scans and segmentation masks for Renal Cell Carcinoma (RCC), combining cases from the TCGA-KIRC, TCGA-KIRP, and TCGA-KICH collections. This repository provides tooling to download the dataset and extract tumor and cyst features for analysis.
 
 ## Dataset Summary
 
-| Subtype | Source | Number of cases 
-|---|---|---|
-Clear Cell RCC | TCGA-KIRC | 95
-Papillary RCC | TCGA-KIRP | 29
-Chromophobe RCC | TCGA-KICH | 18
+| Subtype | Source | Number of cases | Number of patients |
+|---|---|---|---|
+Clear Cell RCC | TCGA-KIRC | 85 | 65 |
+Papillary RCC | TCGA-KIRP | 26 | 16 |
+Chromophobe RCC | TCGA-KICH | 18 | 10 |
 
 ### Segmentation label encoding
 
@@ -23,16 +23,16 @@ Chromophobe RCC | TCGA-KICH | 18
 
 | Metric | Tumor | Cyst |
 |---|---|---|
-| Total count | 142 | 123 |
-| Macro avg size (ml/lesion) | 168.34 | 17.38 |
-| Macro avg diameter (mm/lesion) | 55.51 | 21.00 |
+| Total count | 129 | 118 |
+| Macro avg size (ml/lesion) | 166 | 17 |
+| Macro avg diameter (mm/lesion) | 54 | 21 |
 
 #### Patient demographics
 
 | Metric | Value |
 |---|---|
-| Male | 115 |
-| Female | 27 |
+| Male | 104 |
+| Female | 25 |
 | Age mean (years) | 54 |
 | Age min (years) | 26 |
 | Age max (years) | 82 |
@@ -41,16 +41,18 @@ Chromophobe RCC | TCGA-KICH | 18
 
 | Metric | Avg | Min | Max |
 |---|---|---|---|
-| Slice thickness (mm) | 3.9 | 0.6 | 10.0 |
-| Number of slices | 126 | 31 | 820 |
+| Slice thickness (mm) | 3.8 | 0.6 | 5.0 |
+| Number of slices | 112 | 31 | 820 |
 
 #### Per subtype
 
-| Subtype | Tumors | Avg tumor size (ml) | Avg tumor diameter (mm) | Cysts | Avg cyst size (ml) | Avg cyst diameter (mm) |
+| Subtype | Tumors | Avg tumor size (ml) | Avg tumor diameter (mm) |
+|---|---|---|---|
+| Clear Cell RCC | 85 | 131 | 51 | 
+| Papillary RCC | 26 | 208 | 51 | 
+| Chromophobe RCC | 18 | 272 | 71 | 
 |---|---|---|---|---|---|---|
-| Clear Cell RCC | 18 | 272.25 | 70.96 | 18 | 0.55 | 9.68 |
-| Papillary RCC | 95 | 141.44 | 53.80 | 89 | 16.38 | 22.33 |
-| Chromophobe RCC | 29 | 191.95 | 51.52 | 16 | 41.89 | 26.31 |
+| Cyst | 118 | 17 | 21 |
 
 ## Installation
 
@@ -102,7 +104,7 @@ If you use this dataset, please cite our paper and dataset:
   note    = {medRxiv preprint}
 }
 
-@dataset{deBoer2026KidneySegmentation,
+@dataset{deBoer2026KidneySegmentationDataset,
   author    = {de Boer, Sarah and H{\"a}ntze, Hartmut and Russo, Tomasso and Ziegelmayer, Sebastian and van Ginneken, Bram and Prokop, Mathias and Bressem, Keno and Hering, Alessa},
   title     = {Kidney Segmentation Dataset: Voxel-level Annotations for Renal Cell Carcinoma CT Imaging},
   year      = {2026},
