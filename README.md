@@ -1,4 +1,24 @@
-# RCC-AID Dataset
+<h1 align="center">
+  <img src="./images/rcc-aid-logo.png" alt="Logo" width="50" style="vertical-align: middle; margin-right: 10px;" />
+  RCC-AID Dataset
+</h1>
+
+<div align="center">
+  
+  <a href="https://www.medrxiv.org/content/10.64898/2026.04.22.26351451v1">
+    <img alt="Paper" src="https://img.shields.io/badge/Paper-medRxiv-8B1E3F">
+  </a>
+  <a href="https://zenodo.org/records/19630298">
+    <img alt="Dataset" src="https://img.shields.io/badge/Dataset-Zenodo-003399">
+  </a>
+  <a href="https://www.diagnijmegen.nl/research/oncology/">
+    <img alt="Website" src="https://img.shields.io/badge/Website-DIAGNijmegen-009688">
+  </a>
+  <a href="https://github.com/DIAGNijmegen/oncology-RCC-AID-codebase/blob/main/LICENSE">
+    <img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-blue.svg">
+  </a>
+</div>
+
 
 A curated dataset of CT scans and segmentation masks for Renal Cell Carcinoma (RCC), combining cases from the TCGA-KIRC, TCGA-KIRP, and TCGA-KICH collections. This repository provides tooling to download the dataset and extract tumor and cyst features for analysis.
 
