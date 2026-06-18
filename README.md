@@ -128,10 +128,10 @@ If you use this dataset, please cite our paper and dataset:
   author    = {de Boer, Sarah and H{\"a}ntze, Hartmut and Russo, Tomasso and Ziegelmayer, Sebastian and van Ginneken, Bram and Prokop, Mathias and Bressem, Keno and Hering, Alessa},
   title     = {Kidney Segmentation Dataset: Voxel-level Annotations for Renal Cell Carcinoma CT Imaging},
   year      = {2026},
-  version    = {1.0.0},
+  version    = {2.0.0},
   publisher = {Zenodo},
-  doi       = {10.5281/zenodo.19630298},
-  url       = {https://doi.org/10.5281/zenodo.19630298}
+  doi       = {10.5281/zenodo.19630297},
+  url       = {https://doi.org/10.5281/zenodo.19630297}
 }
 ```
 
