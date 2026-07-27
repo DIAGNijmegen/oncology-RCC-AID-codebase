@@ -6,7 +6,7 @@ from pathlib import Path
 
 import pandas as pd
 
-SUBTYPE_ORDER = ["Clear cell", "Papillary", "Chromophobe"]
+SUBTYPE_ORDER = ["Clear Cell RCC", "Papillary RCC", "Chromophobe RCC"]
 
 NUMERIC_VARS = [
     ("tube_voltage_kvp", "Tube voltage (kVp)"),
